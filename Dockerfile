@@ -38,9 +38,7 @@ RUN curl http://www.libqglviewer.com/src/libQGLViewer-2.6.1.tar.gz > libQGLViewe
     tar -xf libQGLViewer-2.6.1.tar.gz; cd libQGLViewer-2.6.1/QGLViewer; qmake; make; make install;\
     cd ../../; rm -r libQGLViewer-2.6.1; rm -r  libQGLViewer-2.6.1.tar.gz;
 
-RUN apt-get install -y meshlab
+RUN apt-get install -y meshlab fluxbox
 RUN apt-get clean
 
 EXPOSE 5900
-CMD sh -c "x11vnc -create -env FD_PROG=/usr/bin/fluxbox -env X11VNC_FINDDISPLAY_ALWAYS_FAILS=1 \
-    -env X11VNC_CREATE_GEOM=${1:-1024x768x16} -gone 'killall Xvfb' -forever -bg -usepw &"; export DISPLAY=:20 ; bash
